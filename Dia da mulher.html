@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a minha Programadora Favorita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@300;400;700&display=swap');
+
+        :root {
+            --flower-pink: #ff4d6d;
+            --flower-dark: #c9184a;
+            --stem-green: #2d6a4f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* --- Estilização da Flor em CSS --- */
+        .flower-container {
+            position: relative;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+        }
+
+        .stem {
+            width: 8px;
+            height: 150px;
+            background: var(--stem-green);
+            border-radius: 4px;
+            position: relative;
+            animation: sway 4s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        .leaf {
+            width: 30px;
+            height: 15px;
+            background: var(--stem-green);
+            position: absolute;
+            border-radius: 15px 0;
+            left: 8px;
+            top: 60px;
+        }
+
+        .leaf.right {
+            left: -30px;
+            border-radius: 0 15px;
+            top: 80px;
+        }
+
+        .flower-head {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+        }
+
+        .petal {
+            position: absolute;
+            background: var(--flower-pink);
+            width: 40px;
+            height: 40px;
+            border-radius: 50% 50% 0 50%;
+            opacity: 0.9;
+            transform-origin: bottom right;
+            border: 1px solid var(--flower-dark);
+            animation: bloom 2s ease-out forwards;
+        }
+
+        .petal:nth-child(1) { transform: rotate(0deg) scale(0); animation-delay: 0.2s; }
+        .petal:nth-child(2) { transform: rotate(72deg) scale(0); animation-delay: 0.4s; }
+        .petal:nth-child(3) { transform: rotate(144deg) scale(0); animation-delay: 0.6s; }
+        .petal:nth-child(4) { transform: rotate(216deg) scale(0); animation-delay: 0.8s; }
+        .petal:nth-child(5) { transform: rotate(288deg) scale(0); animation-delay: 1s; }
+
+        .center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffb703;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        @keyframes bloom {
+            to { transform: rotate(var(--rotation)) scale(1.2); }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        /* --- Utilitários --- */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #ff4d6d;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff4d6d; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="text-center mt-10 mb-12">
+        <div class="inline-block px-4 py-1 mb-4 rounded-full bg-pink-500/20 text-pink-400 text-sm font-medium border border-pink-500/30">
+            08 de Março • Dia Internacional da Mulher
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent">
+            Olá, <span id="target-name">Meu Amor</span>
+        </h1>
+        <p class="text-slate-400 max-w-lg mx-auto text-lg">
+            Compilando uma pequena homenagem para a mulher que melhora  a minha vida todos os dias.
+        </p>
+    </header>
+
+    <!-- Flower Display -->
+    <section class="flower-container">
+        <div class="stem">
+            <div class="leaf"></div>
+            <div class="leaf right"></div>
+            <div class="flower-head">
+                <div class="petal" style="--rotation: 0deg"></div>
+                <div class="petal" style="--rotation: 72deg"></div>
+                <div class="petal" style="--rotation: 144deg"></div>
+                <div class="petal" style="--rotation: 216deg"></div>
+                <div class="petal" style="--rotation: 288deg"></div>
+                <div class="center"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Card -->
+    <main class="w-full max-w-2xl glass rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+            <i data-lucide="code-2" size="120"></i>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <i data-lucide="heart" class="text-pink-500 fill-pink-500"></i>
+                Log do Sistema: Inspiração
+            </h2>
+            
+            <div class="code-font bg-slate-900/50 p-6 rounded-xl border border-slate-700 text-sm md:text-base leading-relaxed">
+                <p class="text-blue-400">// Declarando variáveis fundamentais</p>
+                <p><span class="text-purple-400">const</span> ela = {</p>
+                <p class="pl-4">inteligencia: <span class="text-yellow-400">Infinity</span>,</p>
+                <p class="pl-4">resiliencia: <span class="text-yellow-400">"Inabalável"</span>,</p>
+                <p class="pl-4">impactoNoMeuMundo: <span class="text-yellow-400">1.0e+100</span></p>
+                <p>};</p>
+                <br>
+                <p class="text-blue-400">// Verificando condições críticas</p>
+                <p><span class="text-purple-400">if</span> (ela.estaPresente) {</p>
+                <p class="pl-4 text-green-400">meuCoracao.status = "A todo vapor";</p>
+                <p class="pl-4 text-green-400">felicidade.push("Sem limites");</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <div class="prose prose-invert max-w-none">
+            <p class="text-slate-300 leading-relaxed text-lg">
+                Hoje celebramos não apenas o teu género, mas a tua força, a tua mente brilhante e a forma como resolves os "bugs" mais complexos do meu dia com um simples sorriso.
+            </p>
+            <p class="text-slate-300 leading-relaxed text-lg mt-4">
+                Como o amor da minha  sabes que a beleza é estar cada do seu lado, mas o que sinto por ti desafia qualquer algoritmo.Ser seu namorado  é a minha função favorita, aquela que eu chamaria pra sempre pra passar o resto da vida comigo
+            </p>
+        </div>
+
+        <footer class="mt-10 pt-6 border-t border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-pink-400 font-medium">
+                <i data-lucide="terminal" size="18"></i>
+                <span>Com amor, o teu Namorado</span>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="shareLove()" class="p-2 rounded-lg hover:bg-slate-700 transition-colors" title="Espalhar Amor">
+                    <i data-lucide="share-2" size="20"></i>
+                </button>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Feedback Message Box -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full border-pink-500/50 text-pink-400 hidden animate-bounce">
+        Copiado para a área de transferência! ❤️
+    </div>
+
+    <script>
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+
+        // Função de partilha (simulada)
+        function shareLove() {
+            const dummy = document.createElement('input');
+            const text = "A minha namorada é a melhor programadora do mundo! ❤️";
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Adicionar um pequeno efeito de partículas
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.innerHTML = '❤';
+            particle.className = 'fixed text-pink-500/20 pointer-events-none select-none';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '110vh';
+            particle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            const duration = Math.random() * 3000 + 4000;
+            const animation = particle.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.5 },
+                { transform: `translateY(-120vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
+
+            document.body.appendChild(particle);
+            animation.onfinish = () => particle.remove();
+        }
+
+        setInterval(createParticle, 500);
+    </script>
+</body>
+</html>
