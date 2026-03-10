@@ -3,263 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para o amor da minha vida</title>
+    <title>Nosso Amor Infinito</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@300;400;700&display=swap');
 
         :root {
-            --flower-pink: #ff4d6d;
-            --flower-dark: #c9184a;
-            --stem-green: #2d6a4f;
+            --duck-yellow: #FFEB3B;
+            --duck-beak: #FF9800;
+            --duck-blush: #FFB7C5;
+            --heart-red: #FF4D6D;
+            --primary-bg: #0f172a;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            background-color: var(--primary-bg);
             color: #f1f5f9;
             overflow-x: hidden;
+            margin: 0;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
         }
 
-        .code-font {
-            font-family: 'Fira Code', monospace;
-        }
+        .code-font { font-family: 'Fira Code', monospace; }
 
-        /* --- Estilização da Flor em CSS --- */
-        .flower-container {
+        /* --- New "Bonitinho" Duck CSS --- */
+        .duck-container {
             position: relative;
-            height: 300px;
+            width: 100px;
+            height: 100px;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            margin-bottom: 2rem;
+            align-items: center;
         }
 
-        .stem {
-            width: 8px;
-            height: 150px;
-            background: var(--stem-green);
-            border-radius: 4px;
-            position: relative;
-            animation: sway 4s ease-in-out infinite;
-            transform-origin: bottom center;
-        }
-
-        .leaf {
-            width: 30px;
-            height: 15px;
-            background: var(--stem-green);
+        .duck-head {
             position: absolute;
-            border-radius: 15px 0;
-            left: 8px;
-            top: 60px;
-        }
-
-        .leaf.right {
-            left: -30px;
-            border-radius: 0 15px;
-            top: 80px;
-        }
-
-        .flower-head {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-        }
-
-        .petal {
-            position: absolute;
-            background: var(--flower-pink);
-            width: 40px;
-            height: 40px;
-            border-radius: 50% 50% 0 50%;
-            opacity: 0.9;
-            transform-origin: bottom right;
-            border: 1px solid var(--flower-dark);
-            animation: bloom 2s ease-out forwards;
-        }
-
-        .petal:nth-child(1) { transform: rotate(0deg) scale(0); animation-delay: 0.2s; }
-        .petal:nth-child(2) { transform: rotate(72deg) scale(0); animation-delay: 0.4s; }
-        .petal:nth-child(3) { transform: rotate(144deg) scale(0); animation-delay: 0.6s; }
-        .petal:nth-child(4) { transform: rotate(216deg) scale(0); animation-delay: 0.8s; }
-        .petal:nth-child(5) { transform: rotate(288deg) scale(0); animation-delay: 1s; }
-
-        .center {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ffb703;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--duck-yellow);
             border-radius: 50%;
+            z-index: 5;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.1);
+        }
+
+        .duck-eye {
+            position: absolute;
+            top: 18px;
+            right: 10px;
+            width: 7px;
+            height: 7px;
+            background: #2d3436;
+            border-radius: 50%;
+        }
+
+        .duck-eye::after { /* Eye Sparkle */
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .duck-blush {
+            position: absolute;
+            top: 26px;
+            right: 6px;
+            width: 12px;
+            height: 6px;
+            background: var(--duck-blush);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .duck-beak {
+            position: absolute;
+            top: 24px;
+            right: -10px;
+            width: 16px;
+            height: 10px;
+            background: var(--duck-beak);
+            border-radius: 50% 80% 80% 50%;
+        }
+
+        .duck-body {
+            position: absolute;
+            bottom: 5px;
+            width: 75px;
+            height: 55px;
+            background: var(--duck-yellow);
+            border-radius: 40% 40% 50% 50%;
+            z-index: 3;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.05);
+        }
+
+        .duck-wing {
+            position: absolute;
             top: 10px;
-            left: 10px;
-            z-index: 10;
+            left: 20px;
+            width: 35px;
+            height: 25px;
+            background: #FDD835;
+            border-radius: 50%;
+            transform-origin: top left;
+            animation: wing-wave 2s infinite ease-in-out;
         }
 
-        @keyframes bloom {
-            to { transform: rotate(var(--rotation)) scale(1.2); }
+        /* Specific Duck States */
+        .duck-left { animation: float 3s infinite ease-in-out; }
+        .duck-right { 
+            transform: scaleX(-1); 
+            animation: float 3s infinite ease-in-out 1.5s; 
         }
 
-        @keyframes sway {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
+        @keyframes wing-wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
         }
 
-        /* --- Utilitários --- */
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* --- Counter Styles --- */
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .counter-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 5px;
+            border-radius: 15px;
+            text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #ff4d6d;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        /* --- Utility --- */
+        .glass {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff4d6d; } }
+        .gradient-text {
+            background: linear-gradient(to right, #fb7185, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #heart-pop-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+<body class="min-h-screen flex flex-col items-center p-6 md:p-12">
 
-    <!-- Header Section -->
-    <header class="text-center mt-10 mb-12">
-        <div class="inline-block px-4 py-1 mb-4 rounded-full bg-pink-500/20 text-pink-400 text-sm font-medium border border-pink-500/30">
-            08 de Março • Dia Internacional da Mulher
+    <!-- Header -->
+    <header class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1 mb-4 rounded-full bg-rose-500/20 text-rose-400 text-xs font-bold uppercase tracking-widest border border-rose-500/30">
+            <i data-lucide="calendar-heart" size="14"></i>
+            Desde 07.12.2024
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent">
-            Olá, <span id="target-name">Meu Amor</span>
-        </h1>
-        <p class="text-slate-400 max-w-lg mx-auto text-lg">
-            Compilando uma pequena homenagem para a mulher que melhora  a minha vida todos os dias.
-        </p>
+        <h1 class="text-4xl md:text-6xl font-black mb-2">O Quanto <span class="gradient-text">Eu Te Amo</span></h1>
+        <p class="text-slate-400 text-lg font-light">E o tempo que celebramos cada segundo juntos.</p>
     </header>
 
-    <!-- Flower Display -->
-    <section class="flower-container">
-        <div class="stem">
-            <div class="leaf"></div>
-            <div class="leaf right"></div>
-            <div class="flower-head">
-                <div class="petal" style="--rotation: 0deg"></div>
-                <div class="petal" style="--rotation: 72deg"></div>
-                <div class="petal" style="--rotation: 144deg"></div>
-                <div class="petal" style="--rotation: 216deg"></div>
-                <div class="petal" style="--rotation: 288deg"></div>
-                <div class="center"></div>
+    <!-- Prettier Ducks Section -->
+    <section class="relative flex items-center justify-center gap-16 h-48 w-full">
+        <div id="heart-pop-container"></div>
+        
+        <!-- Pato 1 -->
+        <div class="duck-container duck-left">
+            <div class="duck-head">
+                <div class="duck-eye"></div>
+                <div class="duck-blush"></div>
+                <div class="duck-beak"></div>
+            </div>
+            <div class="duck-body">
+                <div class="duck-wing"></div>
+            </div>
+        </div>
+
+        <!-- Pato 2 -->
+        <div class="duck-container duck-right">
+            <div class="duck-head">
+                <div class="duck-eye"></div>
+                <div class="duck-blush"></div>
+                <div class="duck-beak"></div>
+            </div>
+            <div class="duck-body">
+                <div class="duck-wing"></div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Card -->
-    <main class="w-full max-w-2xl glass rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-4 opacity-10">
-            <i data-lucide="code-2" size="120"></i>
+    <!-- Timer Card -->
+    <div class="w-full max-w-xl glass rounded-[2rem] p-8 mb-8 shadow-2xl">
+        <h3 class="text-center text-slate-400 uppercase text-xs font-bold tracking-[0.2em] mb-6">Tempo de Namoro</h3>
+        <div class="counter-grid">
+            <div class="counter-item">
+                <div id="days" class="text-3xl font-black text-white">00</div>
+                <div class="text-[10px] text-rose-400 uppercase font-bold mt-1">Dias</div>
+            </div>
+            <div class="counter-item">
+                <div id="hours" class="text-3xl font-black text-white">00</div>
+                <div class="text-[10px] text-rose-400 uppercase font-bold mt-1">Horas</div>
+            </div>
+            <div class="counter-item">
+                <div id="minutes" class="text-3xl font-black text-white">00</div>
+                <div class="text-[10px] text-rose-400 uppercase font-bold mt-1">Min</div>
+            </div>
+            <div class="counter-item">
+                <div id="seconds" class="text-3xl font-black text-white">00</div>
+                <div class="text-[10px] text-rose-400 uppercase font-bold mt-1">Seg</div>
+            </div>
         </div>
+    </div>
 
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                <i data-lucide="heart" class="text-pink-500 fill-pink-500"></i>
-                Log do Sistema: Inspiração
+    <!-- Main Content -->
+    <main class="w-full max-w-2xl glass rounded-[2rem] p-8 md:p-12 shadow-2xl relative">
+        <div class="mb-10">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i data-lucide="terminal" class="text-rose-500"></i>
+                Status do Sistema: Amor Infinito
             </h2>
-            
-            <div class="code-font bg-slate-900/50 p-6 rounded-xl border border-slate-700 text-sm md:text-base leading-relaxed">
-                <p class="text-blue-400">// Declarando variáveis fundamentais</p>
-                <p><span class="text-purple-400">const</span> ela = {</p>
-                <p class="pl-4">inteligencia: <span class="text-yellow-400">Infinity</span>,</p>
-                <p class="pl-4">resiliencia: <span class="text-yellow-400">"Inabalável"</span>,</p>
-                <p class="pl-4">impactoNoMeuMundo: <span class="text-yellow-400">1.0e+100</span></p>
-                <p>};</p>
+            <div class="code-font bg-slate-950/80 p-6 rounded-2xl border border-slate-800 text-sm md:text-base leading-relaxed">
+                <p class="text-blue-400">// Configurações iniciais</p>
+                <p><span class="text-purple-400">const</span> inicioNamoro = <span class="text-emerald-400">"2024-12-07"</span>;</p>
+                <p><span class="text-purple-400">let</span> statusCoracao = <span class="text-emerald-400">"Transbordando"</span>;</p>
                 <br>
-                <p class="text-blue-400">// Verificando condições críticas</p>
-                <p><span class="text-purple-400">if</span> (ela.estaPresente) {</p>
-                <p class="pl-4 text-green-400">meuCoracao.status = "A todo vapor";</p>
-                <p class="pl-4 text-green-400">felicidade.push("Sem limites");</p>
+                <p class="text-blue-400">// Loop de Vida</p>
+                <p><span class="text-purple-400">while</span> (voce.aoMeuLado) {</p>
+                <p class="pl-6 text-pink-400">eu.fazelaFeliz();</p>
+                <p class="pl-6 text-pink-400">eu.amarIncondicionalmente();</p>
+                <p class="pl-6 text-slate-500">// Incrementando felicidade a cada segundo</p>
+                <p class="pl-6">nossoAmor += <span class="text-yellow-400">Infinity</span>;</p>
                 <p>}</p>
             </div>
         </div>
 
-        <div class="prose prose-invert max-w-none">
-            <p class="text-slate-300 leading-relaxed text-lg">
-                Hoje celebramos não apenas o teu género, mas a tua força, a tua mente brilhante e a forma como resolves os "bugs" mais complexos do meu dia com um simples sorriso.
+        <article class="prose prose-invert max-w-none text-slate-300">
+            <p class="text-lg leading-relaxed">
+                Desde aquele dia **07 de Dezembro**, a minha vida ganhou uma cor que eu nem sabia que existia. Você é o meu "commit" de maior sucesso e a única pessoa com quem eu quero compartilhar todo o meu código-fonte.
             </p>
-            <p class="text-slate-300 leading-relaxed text-lg mt-4">
-                Como o amor da minha  sabes que a beleza é estar cada do seu lado, mas o que sinto por ti desafia qualquer algoritmo.Ser seu namorado  é a minha função favorita, aquela que eu chamaria pra sempre pra passar o resto da vida comigo
+            <p class="text-lg leading-relaxed mt-4">
+                Estes patinhos representam a gente: simples, mas sempre juntos, flutuando na mesma direção. O tempo passa, mas o que sinto por ti só escala, sem limites de memória ou processamento.
             </p>
-        </div>
+        </article>
 
-        <footer class="mt-10 pt-6 border-t border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2 text-pink-400 font-medium">
-                <i data-lucide="terminal" size="18"></i>
-                <span>Com amor, o teu Namorado</span>
+        <footer class="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center">
+                    <i data-lucide="heart" class="text-rose-500 fill-rose-500" size="18"></i>
+                </div>
+                <div>
+                    <div class="text-white font-bold text-sm">Para sempre sua pessoa,</div>
+                    <div class="text-slate-500 text-xs">O teu namorado</div>
+                </div>
             </div>
-            <div class="flex gap-4">
-                <button onclick="shareLove()" class="p-2 rounded-lg hover:bg-slate-700 transition-colors" title="Espalhar Amor">
-                    <i data-lucide="share-2" size="20"></i>
-                </button>
-            </div>
+            <button onclick="copyLove()" class="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-full font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-rose-900/20">
+                <i data-lucide="copy" size="18"></i>
+                Copiar Declaração
+            </button>
         </footer>
     </main>
 
-    <!-- Feedback Message Box -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full border-pink-500/50 text-pink-400 hidden animate-bounce">
-        Copiado para a área de transferência! ❤️
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-10 glass px-8 py-4 rounded-2xl border-rose-500/30 text-rose-400 font-bold hidden animate-bounce z-50">
+        Copiado com amor! ❤️
     </div>
 
     <script>
-        // Inicializar ícones Lucide
         lucide.createIcons();
 
-        // Função de partilha (simulada)
-        function shareLove() {
-            const dummy = document.createElement('input');
-            const text = "A minha namorada é a melhor programadora do mundo! ❤️";
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
+        // --- Love Counter Logic ---
+        const startDate = new Date('2024-12-07T00:00:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // --- Heart Animation ---
+        function spawnHeart() {
+            const container = document.getElementById('heart-pop-container');
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = '50%';
+            heart.style.bottom = '40%';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '10';
+            
+            const animation = heart.animate([
+                { transform: 'translate(-50%, 0) scale(0)', opacity: 0 },
+                { transform: `translate(${(Math.random() - 0.5) * 200}px, -150px) scale(1.5)`, opacity: 1, offset: 0.3 },
+                { transform: `translate(${(Math.random() - 0.5) * 400}px, -300px) scale(2)`, opacity: 0 }
+            ], {
+                duration: 3000,
+                easing: 'ease-out'
+            });
+
+            container.appendChild(heart);
+            animation.onfinish = () => heart.remove();
+        }
+
+        setInterval(spawnHeart, 1000);
+
+        // --- Actions ---
+        function copyLove() {
+            const text = "Desde 07/12/2024, meu amor por você só aumenta. Você é o meu commit de maior sucesso! ❤️🦆";
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
             document.execCommand('copy');
-            document.body.removeChild(dummy);
+            document.body.removeChild(el);
 
             const toast = document.getElementById('toast');
             toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
-
-        // Adicionar um pequeno efeito de partículas
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.innerHTML = '❤';
-            particle.className = 'fixed text-pink-500/20 pointer-events-none select-none';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.top = '110vh';
-            particle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            setTimeout(() => toast.classList.add('hidden'), 3000);
             
-            const duration = Math.random() * 3000 + 4000;
-            const animation = particle.animate([
-                { transform: 'translateY(0) rotate(0deg)', opacity: 0.5 },
-                { transform: `translateY(-120vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-            ], {
-                duration: duration,
-                easing: 'linear'
-            });
-
-            document.body.appendChild(particle);
-            animation.onfinish = () => particle.remove();
+            // Explosão de corações ao copiar
+            for(let i=0; i<10; i++) setTimeout(spawnHeart, i*100);
         }
-
-        setInterval(createParticle, 500);
     </script>
 </body>
 </html>
-
